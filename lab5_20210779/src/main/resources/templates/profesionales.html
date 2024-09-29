@@ -11,31 +11,27 @@
     <div th:insert="~{inicio.html::division} "></div> <!--este es el header-->
 
     <div class="card-group" style="margin-bottom: 30px; margin-top: 30px">
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+        <!-- Iterar sobre la lista de profesionales pasada desde el controlador -->
+        <div th:each="profesional : ${lista_profesionales}" class="card">
+            <!-- IMAGEN -->
+            <img th:src="@{${profesional.imagen}}" class="card-img-top" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+                <!-- NOMBRE -->
+                <h5 class="card-title" th:text="${profesional.nombre}"></h5>
+                <!-- AREA -->
+                <p class="card-text" th:text="${profesional.area.nombreArea}"></p>
+                <!-- FECHAS DISPONIBLES -->
+                <h6>Fechas Disponibles:</h6>
+                <ul>
+                    <li th:each="fecha : ${profesional.fechasDisponibilidad}" th:text="${fecha.fechaDisponibilidad}"></li>
+                </ul>
+                <h6>Sede:</h6>
+                <p class="card-text" th:text="${profesional.sede.nombreSede}"></p>
+                <h6>Descripción:</h6>
+                <p class="card-text" th:text="${profesional.descripcionProfesional}"></p>            </div>
         </div>
     </div>
+
 
 
 

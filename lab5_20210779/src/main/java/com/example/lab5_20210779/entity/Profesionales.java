@@ -2,6 +2,7 @@ package com.example.lab5_20210779.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +32,8 @@ public class Profesionales {
     @ManyToOne
     @JoinColumn(name = "idSede")
     private Sede sede;
+
+    @OneToMany(mappedBy = "profesional")
+    private List<Fechas> fechasDisponibilidad; // Relación con fechas
 
 }

@@ -20,8 +20,6 @@ public class ProfesionalesController {
         this.profesionalRepository = profesionalRepository;
     }
 
-
-
     @GetMapping("/listar") //obtiene la lista y la manda a la vista
     public String getEmployees(Model model) {
 
