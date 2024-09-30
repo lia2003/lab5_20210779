@@ -50,7 +50,7 @@ public class ProfesionalesController {
         model.addAttribute("lista_sedes", lista_sedes);
         model.addAttribute("lista_fechas", lista_fechas);
 
-        return "/profesionales";
+        return "profesionales";
     }
 
 
