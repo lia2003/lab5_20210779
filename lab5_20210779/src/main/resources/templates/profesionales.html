@@ -10,37 +10,48 @@
 </head>
 
 <body>
-<div th:insert="~{inicio.html::division} "></div> <!--este es el header-->
-<!--FILTROS-->
+<div th:insert="~{inicio.html::division}"></div> <!-- este es el header -->
+<!-- FILTROS -->
 <div class="container" style="margin-top: 30px;">
-    <form action="#" method="GET" class="row g-3">
+    <form action="/profesional/listar" method="GET" class="row g-3">
+        <!-- PROFESIONAL (Campo de búsqueda) -->
         <div class="col-md-3">
             <label for="profesional" class="form-label">Profesional</label>
             <input type="text" class="form-control" id="profesional" name="profesional" placeholder="Nombre del Profesional">
         </div>
-        <div class="col-md-4">
-            <select name="area" class="form-select">
+        <!-- ÁREA -->
+        <div class="col-md-3">
+            <label for="area" class="form-label">Área</label>
+            <select name="area" id="area" class="form-select">
                 <option value="">Selecciona un área</option>
-                <!-- Itera sobre la lista de áreas -->
-                <th:block th:each="area : ${listaAreas}">
-                    <option th:value="${area.nameArea}" th:text="${area.nameArea}"></option>
+                <th:block th:each="area : ${lista_areas}">
+                    <option th:value="${area.nombreArea}" th:text="${area.nombreArea}"></option>
                 </th:block>
             </select>
-
         </div>
+        <!-- FECHA -->
         <div class="col-md-3">
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="fecha" name="fecha">
+            <select name="fecha" id="fecha" class="form-select">
+                <option value="">Selecciona una fecha</option>
+                <th:block th:each="fecha : ${lista_fechas}">
+                    <option th:value="${fecha.fechaDisponibilidad}" th:text="${fecha.fechaDisponibilidad}"></option>
+                </th:block>
+            </select>
         </div>
+        <!-- SEDE -->
         <div class="col-md-3">
             <label for="sede" class="form-label">Sede</label>
-            <select class="form-select" id="sede" name="sede">
-                <option value="">Todas las sedes</option>
-                <option th:each="sede : ${lista_sedes}" th:value="${sede.id}" th:text="${sede.nombreSede}"></option>
+            <select name="sede" id="sede" class="form-select">
+                <option value="">Selecciona una sede</option>
+                <th:block th:each="sede : ${lista_sedes}">
+                    <option th:value="${sede.nombreSede}" th:text="${sede.nombreSede}"></option>
+                </th:block>
             </select>
         </div>
         <div class="col-md-3">
             <button type="submit" class="btn btn-primary mt-4">Filtrar</button>
+            <a href="/profesional/listar" class="btn btn-outline-dark mt-4">Quitar Filtros</a>
         </div>
     </form>
 </div>
@@ -55,15 +66,17 @@
                 <div class="card-body">
                     <!-- NOMBRE -->
                     <h5 class="card-title" th:text="${profesional.nombre}"></h5>
-                    <!-- AREA -->
+                    <!-- ÁREA -->
                     <p class="card-text" th:text="${profesional.area.nombreArea}"></p>
                     <!-- FECHAS DISPONIBLES -->
                     <h6>Fechas Disponibles:</h6>
                     <ul>
                         <li th:each="fecha : ${profesional.fechasDisponibilidad}" th:text="${fecha.fechaDisponibilidad}"></li>
                     </ul>
+                    <!-- SEDE -->
                     <h6>Sede:</h6>
                     <p class="card-text" th:text="${profesional.sede.nombreSede}"></p>
+                    <!-- DESCRIPCIÓN -->
                     <h6>Descripción:</h6>
                     <p class="card-text" th:text="${profesional.descripcionProfesional}"></p>
                 </div>

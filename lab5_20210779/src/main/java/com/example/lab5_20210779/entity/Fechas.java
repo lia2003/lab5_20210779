@@ -16,7 +16,7 @@ public class Fechas {
     private Integer idFechas;
 
     @Column(name = "fechaDisponibilidad", nullable = false)
-    private LocalDate fechaDisponibilidad;
+    private String fechaDisponibilidad;
 
     @ManyToOne
     @JoinColumn(name = "idProfesional", nullable = false)
